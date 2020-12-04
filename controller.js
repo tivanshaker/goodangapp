@@ -30,3 +30,20 @@ exports.tampilberdasarkanid = function (req, res) {
             }
         });
 };
+
+//menambahkan data toko
+exports.tambahToko = function (req, res) {
+    var nama_toko = req.body.nama_toko;
+    var alamat = req.body.alamat;
+    var kategori = req.body.kategori;
+
+    connection.query('INSERT INTO toko (nama_toko, alamat, kategori) VALUES(?,?,?)',
+        [nama_toko, alamat, kategori],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Menambahkan Data!", res)
+            }
+        });
+};
