@@ -77,3 +77,17 @@ exports.hapusToko = function (req, res) {
             }
         });
 };
+
+//menampilkan barang group
+exports.tampilgroupbarang = function(req, res){
+    connection.query('SELECT toko.id_toko, toko.nama_toko, toko.alamat, toko.kategori, barang.nama_barang, barang.status from stok JOIN barang JOIN toko WHERE stok.id_barang = barang.id_barang AND stok.id_toko = toko.id_toko ORDER BY toko.id_toko',
+        function (error, rows, fields){
+            if(error){
+                console.log(error);
+            }else {
+                response.oknested(rows, res);
+            }
+        }
+    )
+
+};
