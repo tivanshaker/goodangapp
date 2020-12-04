@@ -47,3 +47,33 @@ exports.tambahToko = function (req, res) {
             }
         });
 };
+
+//mengubah data berdasarkan id
+exports.ubahToko = function (req, res) {
+    var id = req.body.id_toko;
+    var nama_toko = req.body.nama_toko;
+    var alamat = req.body.alamat;
+    var kategori = req.body.kategori;
+
+    connection.query('UPDATE toko SET nama_toko=?, alamat=?, kategori=? WHERE id_toko=?', [nama_toko, alamat, kategori, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Ubah Data", res)
+            }
+        });
+};
+
+//Menghapus data berdasarkan id
+exports.hapusToko = function (req, res) {
+    var id = req.body.id_toko;
+    connection.query('DELETE FROM toko WHERE id_toko=?',[id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Hapus Data", res)
+            }
+        });
+};

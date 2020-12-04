@@ -14,4 +14,10 @@ module.exports = function (app) {
 
     app.route('/tambah')
         .post(jsonku.tambahToko);
+
+    app.route('/ubah')
+        .put(jsonku.ubahToko);
+
+    app.route('/hapus')
+        .delete(jsonku.hapusToko)
 }
